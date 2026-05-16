@@ -51,8 +51,8 @@ function getAppDelegateClassClosingLine(src: string): number {
 
 export function applyIosAppDelegate(contents: string): string {
   let nextContents = contents.replace(
-    /^\s*import Expo\s*$/m,
-    'public import Expo'
+    /^(\s*)import Expo\s*$/m,
+    '$1public import Expo'
   );
 
   nextContents = replaceGeneratedContentsAtLine({
