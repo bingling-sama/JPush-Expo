@@ -88,7 +88,7 @@ describe('iOS transforms', () => {
     const repeated = applyIosAppDelegate(transformed);
 
     expect(transformed).toContain('public import Expo');
-    expect(transformed).not.toContain('\nimport Expo\n');
+    expect(transformed).not.toMatch(/^import Expo$/m);
     expect(transformed).toContain('import UserNotifications');
     expect(transformed).toContain('JPUSHService.setup(withOption: launchOptions');
     expect(transformed).toContain(
