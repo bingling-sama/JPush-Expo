@@ -87,8 +87,16 @@ describe('iOS transforms', () => {
     const transformed = applyIosAppDelegate(fixture);
     const repeated = applyIosAppDelegate(transformed);
 
+    expect(transformed).toContain('public import Expo');
+    expect(transformed).not.toContain('\nimport Expo\n');
     expect(transformed).toContain('import UserNotifications');
     expect(transformed).toContain('JPUSHService.setup(withOption: launchOptions');
+    expect(transformed).toContain(
+      'openSettingsFor notification: UNNotification)'
+    );
+    expect(transformed).not.toContain(
+      'openSettingsFor notification: UNNotification?)'
+    );
     expect(transformed).toContain('#if DEBUG');
     expect(transformed).toContain('JPUSHService.setDebugMode()');
     expect(transformed).toContain('didRegisterForRemoteNotificationsWithDeviceToken');

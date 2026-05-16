@@ -23,6 +23,7 @@ describe('native iOS AppDelegate mod', () => {
       'utf8'
     );
 
+    expect(appDelegate).toContain('public import Expo');
     expect(appDelegate).toContain('import UserNotifications');
     expect(appDelegate).toContain(
       'JPUSHService.register(forRemoteNotificationConfig: entity, delegate: self)'
@@ -42,6 +43,12 @@ describe('native iOS AppDelegate mod', () => {
     );
     expect(appDelegate).toContain(
       'name: NSNotification.Name("J_CUSTOM_NOTIFICATION_EVENT")'
+    );
+    expect(appDelegate).toContain(
+      'openSettingsFor notification: UNNotification)'
+    );
+    expect(appDelegate).not.toContain(
+      'openSettingsFor notification: UNNotification?)'
     );
   });
 
