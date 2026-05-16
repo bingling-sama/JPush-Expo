@@ -97,6 +97,7 @@ describe('iOS transforms', () => {
     expect(transformed).not.toContain(
       'openSettingsFor notification: UNNotification?)'
     );
+    expect(repeated).toContain('public import Expo');
     expect(repeated).not.toMatch(/^import Expo$/m);
     expect(transformed).toContain('#if DEBUG');
     expect(transformed).toContain('JPUSHService.setDebugMode()');
