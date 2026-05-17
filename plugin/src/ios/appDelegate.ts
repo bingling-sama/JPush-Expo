@@ -50,8 +50,13 @@ function getAppDelegateClassClosingLine(src: string): number {
 }
 
 export function applyIosAppDelegate(contents: string): string {
-  let nextContents = replaceGeneratedContentsAtLine({
-    src: contents,
+  let nextContents = contents.replace(
+    /^(\s*)import Expo\s*$/m,
+    '$1public import Expo'
+  );
+
+  nextContents = replaceGeneratedContentsAtLine({
+    src: nextContents,
     newSrc: 'import UserNotifications',
     tag: 'jpush-swift-import-usernotifications',
     getLineIndex: getLastImportLine,
@@ -241,7 +246,7 @@ const getJPushDelegateExtension = (): string => {
 
   // 通知设置
   @objc public func jpushNotificationCenter(_ center: UNUserNotificationCenter,
-                                           openSettingsFor notification: UNNotification?) {
+                                           openSettingsFor notification: UNNotification) {
     #if DEBUG
     print("打开通知设置")
     #endif
